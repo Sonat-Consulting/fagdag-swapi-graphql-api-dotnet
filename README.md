@@ -1,16 +1,16 @@
-﻿# .net core graphql eksempel
+﻿# .NET Core GraphQL eksempel
 
-## for å kjøre
+## For å kjøre
 `$ dotnet build`
 
 `$ dotnet run --project ./StarWarsApi`
 
 ## For å teste
-Åpen GraphQL playground i nettleser:    
+Åpen GraphQL playground i nettleser:
 
 https://localhost:5001/ui/playground
 
-## eksempel på spørring:
+## Eksempel på spørring:
 
 ```
 {
