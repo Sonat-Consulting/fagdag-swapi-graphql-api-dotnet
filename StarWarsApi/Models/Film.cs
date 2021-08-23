@@ -6,8 +6,6 @@ namespace StarWarsApi.Models
     {
         public string Title { get; set; }
 
-        public int Id { get; set; }
-
         [JsonProperty("episode_id")]
         public int EpisodeId { get; set; }
 
@@ -20,5 +18,20 @@ namespace StarWarsApi.Models
 
         [JsonProperty("release_date")]
         public string ReleaseDate { get; set; }
+
+        public string Created { get; set; }
+        public string Edited { get; set; }
+
+        public string Url { get; set; }
+
+        public string[] Species { get; set; }
+
+        public string[] Starships { get; set; }
+
+        public string[] Vehicles { get; set; }
+
+        public string[] Characters { get; set; }
+
+        public string[] Planets { get; set; }
     }
 }
