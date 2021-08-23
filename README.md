@@ -21,3 +21,13 @@ https://localhost:5001/ui/playground
   }
 }
 ```
+
+```
+{
+  film(id: 1) {
+    title
+    episodeId
+    director
+	}
+}
+```
