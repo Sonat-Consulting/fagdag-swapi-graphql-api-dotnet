@@ -7,9 +7,9 @@ namespace StarWarsApi.SchemaDefinition
 {
     public class StarWarsQuery : ObjectGraphType
     {
-        public StarWarsQuery(IFilmsReposity filmsReposity)
+        public StarWarsQuery(IFilmService service)
         {
-            Field<ListGraphType<FilmType>>("films", resolve: _ => filmsReposity.GetAll());
+            Field<ListGraphType<FilmType>>("films", resolve: context => service.GetFilms());
         }
     }
 }

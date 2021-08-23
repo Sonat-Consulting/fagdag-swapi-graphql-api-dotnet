@@ -17,6 +17,7 @@ namespace StarWarsApi
         {
             services.AddScoped<StarWarsQuery>();
             services.AddScoped<IFilmsReposity, FilmsRepository>();
+            services.AddHttpClient<IFilmService, FilmService>();
 
             services.AddScoped<StarWarsSchema>();
 
@@ -38,7 +39,6 @@ namespace StarWarsApi
             app.UseGraphQL<StarWarsSchema>();
 
             app.UseGraphQLPlayground(new PlaygroundOptions());
-
 
             // app.UseRouting();
             //
