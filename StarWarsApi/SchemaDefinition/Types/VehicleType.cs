@@ -15,10 +15,10 @@ namespace StarWarsApi.SchemaDefinition.Types
             Field(t => t.Created).Description("he ISO 8601 date format of the time that this resource was created.");
             Field(t => t.Crew).Description("The number of personnel needed to run or pilot this vehicle");
             Field(t => t.MaxAtmospheringSpeed).Description("The maximum speed of this vehicle in the atmosphere");
-            Field(t => t.CargoCapacity).Description("The maximum number of kilograms that this vehicle can transport");
             Field(t => t.Passengers).Description("The number of non-essential people this vehicle can transport");
             Field(t => t.Length).Description("The length of this vehicle in meters");
             Field(t => t.Manufacturer).Description("The manufacturer of this vehicle. Comma separated if more than one");
+            Field(t => t.VehicleClass).Description("The class of this vehicle, such as \"Wheeled\" or \"Repulsorcraft\"");
         }
     }
 }
