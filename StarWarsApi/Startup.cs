@@ -1,5 +1,6 @@
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
+using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,13 +40,7 @@ namespace StarWarsApi
             app.UseGraphQL<StarWarsSchema>();
 
             app.UseGraphQLPlayground(new PlaygroundOptions());
-
-            // app.UseRouting();
-            //
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
-            // });
+            app.UseGraphQLVoyager(new VoyagerOptions());
         }
     }
 }
