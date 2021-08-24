@@ -7,9 +7,9 @@ namespace StarWarsApi.SchemaDefinition
 {
     public class StarWarsQuery : ObjectGraphType
     {
-        public StarWarsQuery(IFilmService service)
+        public StarWarsQuery(IFilmService filmService, IReviewService reviewService)
         {
-            Field<ListGraphType<FilmType>>("films", resolve: context => service.GetFilms());
+            Field<ListGraphType<FilmType>>("films", resolve: context => filmService.GetFilms());
             Field<FilmType>(
                 "film",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>>
@@ -19,9 +19,9 @@ namespace StarWarsApi.SchemaDefinition
                 resolve: context =>
                 {
                     var episodeId = context.GetArgument<int>("id");
-                    return service.GetFilm(episodeId);
+                    return filmService.GetFilm(episodeId);
                 });
-            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => service.GetVehicles());
+            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => filmService.GetVehicles());
             Field<VehicleType>(
                 "vehicle",
                 arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>>
@@ -31,8 +31,10 @@ namespace StarWarsApi.SchemaDefinition
                 resolve: context =>
                 {
                     var episodeId = context.GetArgument<int>("id");
-                    return service.GetVehicle(episodeId);
+                    return filmService.GetVehicle(episodeId);
                 });
+
+            Field<ListGraphType<ReviewType>>("reviews", resolve: context => reviewService.GetReviews());
         }
     }
 }

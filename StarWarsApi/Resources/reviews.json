@@ -1,0 +1,52 @@
+[
+  {
+    "episodeId": 1,
+    "username": "Geir",
+    "diceThrow": 2
+  },
+  {
+    "episodeId": 1,
+    "username": "Thomas",
+    "diceThrow": 4
+  },
+  {
+    "episodeId": 2,
+    "username": "Geir",
+    "diceThrow": 3
+  },
+  {
+    "episodeId": 2,
+    "username": "Thomas",
+    "diceThrow": 6
+  },
+  {
+    "episodeId": 2,
+    "username": "Jonny",
+    "diceThrow": 5
+  },
+  {
+    "episodeId": 3,
+    "username": "Geir",
+    "diceThrow": 1
+  },
+  {
+    "episodeId": 4,
+    "username": "Thomas",
+    "diceThrow": 3
+  },
+  {
+    "episodeId": 5,
+    "username": "Geir",
+    "diceThrow": 4
+  },
+  {
+    "episodeId": 6,
+    "username": "Thomas",
+    "diceThrow": 6
+  },
+  {
+    "episodeId": 6,
+    "username": "Jonny",
+    "diceThrow": 2
+  }
+]

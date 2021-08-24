@@ -16,6 +16,7 @@ namespace StarWarsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<StarWarsQuery>();
+            services.AddScoped<IReviewService, ReviewService>();
             services.AddHttpClient<IFilmService, FilmService>();
 
             services.AddScoped<StarWarsSchema>();
