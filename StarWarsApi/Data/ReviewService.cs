@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using StarWarsApi.Models;
@@ -8,6 +9,7 @@ namespace StarWarsApi.Data
     public interface IReviewService
     {
         Task<List<Review>> GetReviews();
+        Task<List<Review>> GetReviews(int episodeId);
     }
 
     public class ReviewService : IReviewService
@@ -21,6 +23,13 @@ namespace StarWarsApi.Data
                 this._reviews = await ReadReviewsFromFile();
             }
             return this._reviews;
+        }
+
+        public async Task<List<Review>> GetReviews(int episodeId)
+        {
+            var allReviews = await this.GetReviews();
+
+            return allReviews.Where(r => r.EpisodeId == episodeId).ToList<Review>();
         }
 
         private async Task<List<Review>> ReadReviewsFromFile()

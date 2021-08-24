@@ -6,7 +6,7 @@ namespace StarWarsApi.SchemaDefinition.Types
 {
     public sealed class FilmType : ObjectGraphType<Film>
     {
-        public FilmType(IFilmService service)
+        public FilmType(IFilmService filmService, IReviewService reviewService)
         {
             Field(t => t.Title).Description("The title of the film");
             Field(t => t.EpisodeId)
@@ -23,7 +23,8 @@ namespace StarWarsApi.SchemaDefinition.Types
             Field(t => t.VehicleIds).Description("An array of vehicle ids that are in this film");
             Field(t => t.Characters).Description("An array of people resource URLs that are in this film");
             Field(t => t.Planets).Description("An array of planet resource URLs that are in this film");
-            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => service.GetVehicles(context.Source.VehicleIds));
+            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => filmService.GetVehicles(context.Source.VehicleIds));
+            Field<ListGraphType<ReviewType>>("reviews", resolve: context => reviewService.GetReviews(context.Source.EpisodeId));
         }
     }
 }
