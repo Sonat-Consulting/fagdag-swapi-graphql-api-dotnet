@@ -13,7 +13,6 @@ namespace StarWarsApi.Data
 
         Task<List<Vehicle>> GetVehicles();
         Task<Vehicle> GetVehicle(int id);
-
     }
 
     public class FilmService : IFilmService
@@ -55,17 +54,6 @@ namespace StarWarsApi.Data
             var responseString = await _httpClient.GetStringAsync(uri);
             return JsonConvert.DeserializeObject<Vehicle>(responseString);
         }
-    }
-
-    public class SwapiCollectionResponse<T>
-    {
-        public int Count { get; set; }
-
-        public string Next { get; set; }
-
-        public string Previous { get; set; }
-
-        public List<T> Results { get; set; }
     }
 }
 
