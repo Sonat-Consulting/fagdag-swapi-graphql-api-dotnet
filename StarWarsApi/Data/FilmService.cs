@@ -9,7 +9,11 @@ namespace StarWarsApi.Data
     public interface IFilmService
     {
         Task<List<Film>> GetFilms();
-        Task<Film> GetFilm(int episodeId);
+        Task<Film> GetFilm(int id);
+
+        Task<List<Vehicle>> GetVehicles();
+        Task<Vehicle> GetVehicle(int id);
+
     }
 
     public class FilmService : IFilmService
@@ -36,15 +40,30 @@ namespace StarWarsApi.Data
             var responseString = await _httpClient.GetStringAsync(uri);
             return JsonConvert.DeserializeObject<Film>(responseString);
         }
+
+        public async Task<List<Vehicle>> GetVehicles()
+        {
+            var uri = "https://swapi.dev/api/vehicles/";
+            var responseString = await _httpClient.GetStringAsync(uri);
+            var responseWithMetadata = JsonConvert.DeserializeObject<SwapiCollectionResponse<Vehicle>>(responseString);
+            return responseWithMetadata.Results;
+        }
+
+        public async Task<Vehicle> GetVehicle(int id)
+        {
+            var uri = $"https://swapi.dev/api/vehicles/{id}";
+            var responseString = await _httpClient.GetStringAsync(uri);
+            return JsonConvert.DeserializeObject<Vehicle>(responseString);
+        }
     }
 
     public class SwapiCollectionResponse<T>
     {
         public int Count { get; set; }
 
-        public int? Next { get; set; }
+        public string Next { get; set; }
 
-        public int? Previous { get; set; }
+        public string Previous { get; set; }
 
         public List<T> Results { get; set; }
     }

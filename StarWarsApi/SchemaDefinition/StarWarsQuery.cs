@@ -21,6 +21,18 @@ namespace StarWarsApi.SchemaDefinition
                     var episodeId = context.GetArgument<int>("id");
                     return service.GetFilm(episodeId);
                 });
+            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => service.GetVehicles());
+            Field<VehicleType>(
+                "vehicle",
+                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<IdGraphType>>
+                {
+                    Name = "id"
+                }),
+                resolve: context =>
+                {
+                    var episodeId = context.GetArgument<int>("id");
+                    return service.GetVehicle(episodeId);
+                });
         }
     }
 }
