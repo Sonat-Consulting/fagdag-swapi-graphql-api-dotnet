@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace StarWarsApi.Models
 {
@@ -28,7 +29,13 @@ namespace StarWarsApi.Models
 
         public string[] Starships { get; set; }
 
-        public string[] Vehicles { get; set; }
+
+        [JsonProperty("vehicles")]
+        public string[] VehicleUrls { get; set; }
+
+        public int[] VehicleIds { get; set; }
+
+        public Vehicle[] VehicleList { get; set; }
 
         public string[] Characters { get; set; }
 

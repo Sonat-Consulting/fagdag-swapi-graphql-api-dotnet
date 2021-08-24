@@ -1,11 +1,12 @@
 ﻿using GraphQL.Types;
+using StarWarsApi.Data;
 using StarWarsApi.Models;
 
 namespace StarWarsApi.SchemaDefinition.Types
 {
     public sealed class FilmType : ObjectGraphType<Film>
     {
-        public FilmType()
+        public FilmType(IFilmService service)
         {
             Field(t => t.Title).Description("The title of the film");
             Field(t => t.EpisodeId)
@@ -19,9 +20,10 @@ namespace StarWarsApi.SchemaDefinition.Types
             Field(t => t.Url).Description("the hypermedia URL of this resource");
             Field(t => t.Species).Description("An array of species resource URLs that are in this film");
             Field(t => t.Starships).Description("An array of starship resource URLs that are in this film");
-            Field(t => t.Vehicles).Description("An array of vehicle resource URLs that are in this film");
+            Field(t => t.VehicleIds).Description("An array of vehicle ids that are in this film");
             Field(t => t.Characters).Description("An array of people resource URLs that are in this film");
             Field(t => t.Planets).Description("An array of planet resource URLs that are in this film");
+            Field<ListGraphType<VehicleType>>("vehicles", resolve: context => service.GetVehicles(context.Source.VehicleIds));
         }
     }
 }

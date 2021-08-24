@@ -14,11 +14,14 @@ https://localhost:5001/ui/playground
 
 ```
 {
-  films{
-    id
+  films {
     title
-    producer
-  }
+    director
+    vehicles{
+			name
+    	model
+    }
+	}
 }
 ```
 
