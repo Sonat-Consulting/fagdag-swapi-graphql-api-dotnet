@@ -28,7 +28,6 @@ namespace StarWarsApi.Data
         public async Task<List<Review>> GetReviews(int episodeId)
         {
             var allReviews = await this.GetReviews();
-
             return allReviews.Where(r => r.EpisodeId == episodeId).ToList<Review>();
         }
 
