@@ -3,6 +3,7 @@ using GraphQL.Server.Ui.Playground;
 using GraphQL.Server.Ui.Voyager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StarWarsApi.Data;
@@ -16,6 +17,7 @@ namespace StarWarsApi
         {
             services.AddScoped<StarWarsQuery>();
             services.AddScoped<IReviewService, ReviewService>();
+            services.AddMemoryCache();
             services.AddHttpClient<IFilmService, FilmService>();
 
             services.AddScoped<StarWarsSchema>();

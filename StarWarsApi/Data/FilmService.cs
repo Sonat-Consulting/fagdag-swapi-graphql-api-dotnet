@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using StarWarsApi.Models;
 
@@ -21,46 +22,75 @@ namespace StarWarsApi.Data
     public class FilmService : IFilmService
     {
         private readonly HttpClient _httpClient;
+        private readonly IMemoryCache _cache;
 
-        public FilmService(HttpClient httpClient)
+        public FilmService(HttpClient httpClient, IMemoryCache memoryCache)
         {
             _httpClient = httpClient;
+            _cache = memoryCache;
         }
 
         public async Task<List<Film>> GetFilms()
         {
+            if (_cache.TryGetValue<List<Film>>("films", out var cachedFilms))
+            {
+                return cachedFilms;
+            }
+
             var uri = "https://swapi.dev/api/films/";
             var responseString = await _httpClient.GetStringAsync(uri);
             var responseWithMetadata = JsonConvert.DeserializeObject<SwapiCollectionResponse<Film>>(responseString);
             var films = responseWithMetadata.Results;
             films.ForEach(f => f.VehicleIds = GetIdsFromUrls(f.VehicleUrls));
 
+            _cache.Set<List<Film>>("films", films);
             return films;
         }
 
         public async Task<Film> GetFilm(int id)
         {
+            if (_cache.TryGetValue<Film>($"films-{id}", out var cachedFilms))
+            {
+                return cachedFilms;
+            }
             var uri = $"https://swapi.dev/api/films/{id}";
             var responseString = await _httpClient.GetStringAsync(uri);
             var film = JsonConvert.DeserializeObject<Film>(responseString);
             film.VehicleIds = GetIdsFromUrls(film.VehicleUrls);
 
+            _cache.Set<Film>($"films-{id}", film);
             return film;
         }
 
         public async Task<List<Vehicle>> GetVehicles()
         {
+            if (_cache.TryGetValue<List<Vehicle>>($"vehicles", out var cachedVehicles))
+            {
+                return cachedVehicles;
+            }
             var uri = "https://swapi.dev/api/vehicles/";
             var responseString = await _httpClient.GetStringAsync(uri);
             var responseWithMetadata = JsonConvert.DeserializeObject<SwapiCollectionResponse<Vehicle>>(responseString);
-            return responseWithMetadata.Results;
+            var vehicles = responseWithMetadata.Results;
+
+            _cache.Set<List<Vehicle>>($"vehicles", vehicles);
+
+            return vehicles;
         }
 
         public async Task<Vehicle> GetVehicle(int id)
         {
+            if (_cache.TryGetValue<Vehicle>($"vehicle-{id}", out var cachedVehicle))
+            {
+                return cachedVehicle;
+            }
             var uri = $"https://swapi.dev/api/vehicles/{id}";
             var responseString = await _httpClient.GetStringAsync(uri);
-            return JsonConvert.DeserializeObject<Vehicle>(responseString);
+            var vehicle = JsonConvert.DeserializeObject<Vehicle>(responseString);
+
+            _cache.Set<Vehicle>($"vehicle-{id}", vehicle);
+
+            return vehicle;
         }
 
         public async Task<List<Vehicle>> GetVehicles(int[] ids)
