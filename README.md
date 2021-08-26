@@ -63,6 +63,8 @@ Før du begynner må du bytte til greinen "del-2" i git.
 
 4. Finn feltet *reviews* på film og implementer en resolver. 
 Det er lov å bruke servicene som allerede er laget.
+
+FOR JAVA: Finn filmResolvers og fiks getReviews
 ```
 # For å sjekke kan du kjøre denne spørringen
 {
@@ -79,6 +81,8 @@ Det er lov å bruke servicene som allerede er laget.
 
 5. Legg til feltet *vehicles* på film og implement resolver.
 Det er lov å bruke servicene som allerede er laget.
+
+FOR JAVA: Legg til feltet *vehicles* på *film* i skjema og fiks getVehicles i FilmResolver
 
 ```
 # For å sjekke kan du kjøre denne spørringen
