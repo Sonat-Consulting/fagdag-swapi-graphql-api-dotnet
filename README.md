@@ -18,7 +18,7 @@ En grafisk oversikt av skjema finner du på https://localhost:5001/ui/voyager
 Vi skal spørre mot serveren med GrahQL. 
 
 1. Spør om alle filmer med feltene tittel og producer
-2. Spør om alle filmer med feltene tittel, openingcrawl og released
+2. Spør om alle filmer med feltene tittel, openingcrawl og releaseDate
 3. Spør om alle filmer med feltene tittel og vehicles, og vehicles skal minst ha med feltene model og manufacturer
 4. Spør om alle reviews
 5. Spør om film med id 3
@@ -50,13 +50,13 @@ Før du begynner må du bytte til greinen "del-2" i git.
 }
 ```
 
-3. Legg til feltet *released* på film-typen.
+3. Legg til feltet *releaseDate* på film-typen.
 ```
 # For å sjekke kan du kjøre denne spørringen
 {
   films {
     title
-    released
+    releaseDate
   }
 }
 ```
