@@ -10,6 +10,8 @@ namespace StarWarsApi.Data
     {
         Task<List<Review>> GetReviews();
         Task<List<Review>> GetReviews(int episodeId);
+
+        Task<Review> AddReview(Review review);
     }
 
     public class ReviewService : IReviewService
@@ -29,6 +31,12 @@ namespace StarWarsApi.Data
         {
             var allReviews = await this.GetReviews();
             return allReviews.Where(r => r.EpisodeId == episodeId).ToList<Review>();
+        }
+
+        public async Task<Review> AddReview(Review review)
+        {
+            (await GetReviews()).Add(review);
+            return review;
         }
 
         private async Task<List<Review>> ReadReviewsFromFile()
