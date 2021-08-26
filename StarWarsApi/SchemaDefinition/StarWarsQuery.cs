@@ -33,8 +33,6 @@ namespace StarWarsApi.SchemaDefinition
                     var episodeId = context.GetArgument<int>("id");
                     return filmService.GetVehicle(episodeId);
                 });
-
-            Field<ListGraphType<ReviewType>>("reviews", resolve: context => reviewService.GetReviews());
         }
     }
 }
