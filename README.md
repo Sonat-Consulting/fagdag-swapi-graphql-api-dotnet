@@ -61,7 +61,8 @@ Før du begynner må du bytte til greinen "del-2" i git.
 }
 ```
 
-4. Legg til feltet *reviews* på film og implementer resolver
+4. Finn feltet *reviews* på film og implementer en resolver. 
+Det er lov å bruke servicene som allerede er laget.
 ```
 # For å sjekke kan du kjøre denne spørringen
 {
@@ -76,7 +77,8 @@ Før du begynner må du bytte til greinen "del-2" i git.
 }
 ```
 
-5. Legg til feltet *vehicles* på film og implement resolver
+5. Legg til feltet *vehicles* på film og implement resolver.
+Det er lov å bruke servicene som allerede er laget.
 
 ```
 # For å sjekke kan du kjøre denne spørringen
@@ -92,7 +94,7 @@ Før du begynner må du bytte til greinen "del-2" i git.
 }
 ```
 
-6. Legge til reviews til schema sånn at det går ann å spørre etter alle reviews.
+6. Legge til reviews til schema sånn at det går an å spørre etter alle reviews (uten å bruke films).
 ```
 # For å sjekke kan du kjøre denne spørringen
 {
@@ -104,7 +106,7 @@ Før du begynner må du bytte til greinen "del-2" i git.
 }
 ```
 
-7. (Ekstra oppgave) Utvid reviews til å ha kommentarer, her må du endre i data også
+7. (Ekstra oppgave) Utvid reviews til å ha kommentarer. Her må du endre i services/data også.
 ```
 # For å sjekke kan du kjøre denne spørringen
 {
