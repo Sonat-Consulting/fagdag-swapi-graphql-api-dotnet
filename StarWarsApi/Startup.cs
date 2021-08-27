@@ -18,7 +18,7 @@ namespace StarWarsApi
             services.AddScoped<StarWarsQuery>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddMemoryCache();
-            services.AddHttpClient<IFilmService, FilmService>();
+            services.AddSingleton<IFilmService, FilmServiceMock>();
 
             services.AddScoped<StarWarsSchema>();
 
