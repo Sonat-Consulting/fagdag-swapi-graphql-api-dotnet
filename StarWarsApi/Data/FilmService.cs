@@ -37,7 +37,7 @@ namespace StarWarsApi.Data
                 return cachedFilms;
             }
 
-            var uri = "https://swapi.dev/api/films/";
+            var uri = "http://192.168.74.149:8000/api/films/";
             var responseString = await _httpClient.GetStringAsync(uri);
             var responseWithMetadata = JsonConvert.DeserializeObject<SwapiCollectionResponse<Film>>(responseString);
             var films = responseWithMetadata.Results;
@@ -53,7 +53,7 @@ namespace StarWarsApi.Data
             {
                 return cachedFilms;
             }
-            var uri = $"https://swapi.dev/api/films/{id}";
+            var uri = $"http://192.168.74.149:8000/api/films/{id}";
             var responseString = await _httpClient.GetStringAsync(uri);
             var film = JsonConvert.DeserializeObject<Film>(responseString);
             film.VehicleIds = GetIdsFromUrls(film.VehicleUrls);
@@ -68,7 +68,7 @@ namespace StarWarsApi.Data
             {
                 return cachedVehicles;
             }
-            var uri = "https://swapi.dev/api/vehicles/";
+            var uri = "http://192.168.74.149:8000/api/vehicles/";
             var responseString = await _httpClient.GetStringAsync(uri);
             var responseWithMetadata = JsonConvert.DeserializeObject<SwapiCollectionResponse<Vehicle>>(responseString);
             var vehicles = responseWithMetadata.Results;
@@ -84,7 +84,7 @@ namespace StarWarsApi.Data
             {
                 return cachedVehicle;
             }
-            var uri = $"https://swapi.dev/api/vehicles/{id}";
+            var uri = $"http://192.168.74.149:8000/api/vehicles/{id}";
             var responseString = await _httpClient.GetStringAsync(uri);
             var vehicle = JsonConvert.DeserializeObject<Vehicle>(responseString);
 
